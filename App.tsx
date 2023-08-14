@@ -1,20 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
 
-export default function App() {
+import React from 'react';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+
+import {StyleSheet} from 'react-native';
+import {Navigator} from './src/navigator/Navigator';
+import {ThemeProvider} from './src/context/themeContext/ThemeContext';
+
+/////CUSTOM THEME
+/* const customTheme: Theme = {
+  dark: true,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#084F6A',
+
+    card: '#',
+    text: '#',
+    border: '#',
+    notification: '#',
+    background: '#084',
+  },
+}; */
+
+function App(): JSX.Element {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AppState>
+      <Navigator></Navigator>
+    </AppState>
   );
 }
 
+const AppState = ({children}: any) => {
+  return <ThemeProvider>{children}</ThemeProvider>;
+};
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
   },
 });
+
+export default App;
